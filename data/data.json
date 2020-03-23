@@ -1,0 +1,245 @@
+{
+    "objects":[
+        {
+            "serial": "OBJ_001",
+            "type": "raspberry_TH",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de température et d'humidité de la salle de cours du Campus de Chambéry",
+            "location": "45.644065, 5.867810",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_002",
+            "type": "raspberry_TH",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de température et d'humidité de la salle de cours du Campus de Grenoble",
+            "location": "45.185679, 5.727761",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_003",
+            "type": "raspberry_TH",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de température et d'humidité de la salle de cours du Campus de Valence",
+            "location": "44.932990, 4.890915",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_004",
+            "type": "raspberry_TH",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de température et d'humidité de la salle de cours du Campus d'Annecy",
+            "location": "45.907998, 6.102729",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_005",
+            "type": "raspberry_AQ",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de qualité de l'air de la salle de cours du Campus de Chambéry",
+            "location": "45.644065, 5.867810",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_006",
+            "type": "raspberry_AQ",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de qualité de l'air de la salle de cours du Campus de Grenoble",
+            "location": "45.185679, 5.727761",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_007",
+            "type": "raspberry_AQ",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de qualité de l'air de la salle de cours du Campus de Valence",
+            "location": "44.932990, 4.890915",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_008",
+            "type": "raspberry_AQ",
+            "image": "raspberry-pi-4.jpg",
+            "description": "Capteur de qualité de l'air de la salle de cours du Campus d'Annecy",
+            "location": "45.907998, 6.102729",
+            "refresh": 5,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_009",
+            "type": "Digital_C02",
+            "description": "Capteur de mesure du C02 de la salle de cours du Campus de Chambéry",
+            "location": "45.644065, 5.867810",
+            "refresh": 60,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_010",
+            "type": "arduino_acc",
+            "image": "arduino_door.jpg",
+            "description": "Capteur d'ouverture porte de la salle de cours du Campus de Chambéry",
+            "location": "45.644065, 5.867810",
+            "refresh": 0,
+            "status": true,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        },
+        {
+            "serial": "OBJ_011",
+            "type": "arduino_presence",
+            "image": "arduino_presence.jpg",
+            "description": "Capteur de présence de la salle de cours du Campus de Chambéry",
+            "location": "45.644065, 5.867810",
+            "refresh": 0,
+            "status": false,
+            "provisionning":{
+                "date": "2020-03-20",
+                "operator": "JPA"
+            }
+        }
+
+    ],
+    "types":{
+        "raspberry_TH":{
+            "sensors": [
+                "humidity", "temperature"
+            ],
+            "description": "Capteur de température et d'humidité basé sur Raspberry Pi 4",
+            "default_image": "raspberry-pi-4.jpg",
+            "communication": "wifi"
+        },
+        "raspberry_AQ":{
+            "sensors": [
+                "pm2_5", "pm10", "CO2"
+            ],
+            "description": "Capteur de qualité de l'air basé sur Raspberry Pi 4",
+            "default_image": "raspberry-pi-4.jpg",
+            "communication": "wifi"
+        },
+        "Digital_CO2":{
+            "sensors": [
+                "CO2"
+            ],
+            "description": "Capteur de mesure du C02",
+            "default_image": "CO2_detector.jpg",
+            "communication": "lorawan"
+        },
+        "arduino_acc":{
+            "sensors": [
+                "acc_x", "acc_y", "acc_z"
+            ],
+            "description": "Capteur accéléromètre basé sur arduino",
+            "default_image": "arduino_accelero.png",
+            "communication": "wifi"
+        },
+        "arduino_presence":{
+            "sensors": [
+                "distance", "presence"
+            ],
+            "description": "Capteur de présence basé sur arduino",
+            "default_image": "arduino_presence.jpg",
+            "communication": "lorawan"
+        }
+
+
+
+    },
+    "communication": [
+        "wifi", "lorawan"
+    ],
+    "data_formats":{
+        "temperature":{
+            "data_type": "number",
+            "unit": "°C"
+        },
+        "humidity":{
+            "data_type": "number",
+            "unit": "%"
+        },
+        "sound_level":{
+            "data_type": "number",
+            "unit": "dB"
+        },
+        "pm2_5":{
+            "data_type": "number",
+            "unit": "ppm"
+        },
+        "pm10":{
+            "data_type": "number",
+            "unit": "ppm"
+        },
+        "CO2":{
+            "data_type": "number",
+            "unit": "ppm"
+        },
+        "weight":{
+            "data_type": "number",
+            "unit": "g"
+        },
+        "distance":{
+            "data_type": "number",
+            "unit": "m"
+        },
+        "presence":{
+            "data_type": "boolean",
+            "unit": ""
+        },
+        "acc_x":{
+            "data_type": "number",
+            "unit": ""
+        },
+        "acc_y":{
+            "data_type": "number",
+            "unit": ""
+        },
+        "acc_z":{
+            "data_type": "number",
+            "unit": ""
+        }
+    }
+}

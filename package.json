@@ -1,0 +1,16 @@
+{
+  "name": "js-module2",
+  "version": "1.0.0",
+  "description": "js campus module 2",
+  "scripts": {
+    "start": "node app.js 5000",
+    "test": "./node_modules/.bin/mocha -u tdd --exit -b "
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
+  }
+}

@@ -92,7 +92,13 @@ function types(){
  * Cette liste sera contenu dans la clé formats.
  */
 function formats(){
-   return undefined;
+    let u = Object.keys(data.data_formats).map(function(key) {
+        return JSON.parse("{ \""+(key) +"\" : " +JSON.stringify(data.data_formats[key])+"}");
+      });
+      
+    return {
+       'formats' : u
+   }
 }
 
  /**
@@ -104,7 +110,10 @@ function formats(){
   * Cette liste sera contenue dans la clé objects
   */
 function objects_serials(){
-    return {"objects":[]};
+    return {"objects": Object.entries(data.objects).map(element => {
+        return element[1].serial;
+    }) 
+};
 }
 
 /**
@@ -115,7 +124,14 @@ function objects_serials(){
  * l'objet ayant le serial passé en paramètre.
  */
 function get_object_by_serial(serial){
-    return serial;
+    var u ;
+    Object.entries(data.objects).forEach(i => {
+        if (i[1].serial == serial){
+           u = i[1]  
+        }
+       
+    })
+    return u;
 }
 
 /**
@@ -126,7 +142,13 @@ function get_object_by_serial(serial){
  * liste des objets ayant l'opérateur passé en paramètre.
  */
 function get_objects_by_operator(operator){
-    return operator;
+    let u = [];
+    Object.entries(data.objects).forEach(i => {
+        if (i[1].provisionning.operator == operator){
+           u.push(i[1])  
+        }
+    })
+    return (u.length==0) ? undefined : { 'objects': u } ;
 }
 
 /**

@@ -18,7 +18,7 @@ let data = JSON.parse(rawfile);
   * une chaîne de caractères.
   */
 function demarrage(){
-    return "";
+    return "oeoe";
 }
 
  /**
@@ -28,7 +28,7 @@ function demarrage(){
   * Elle retourne un objet javascript au format json.
   */
 function home(){
-    return undefined;
+    return data;
 }
 
  /**
@@ -38,7 +38,7 @@ function home(){
   * Elle retourne un objet javascript contenant toutes les données.
   */
 function donnees(){
-    return {};
+    return data;
 }
 
  /**
@@ -50,7 +50,7 @@ function donnees(){
   * Cette liste sera contenu dans la clé communication
   */
 function comms(){
-    return {"communication":[]};
+    return {communication: data.communication};
 }
 
 
@@ -63,7 +63,7 @@ function comms(){
   * Cette liste sera contenue dans la clé objects
   */
 function objects(){
-    return {"objects":[]};
+    return {"objects":data.objects};
 }
 
  /**
@@ -75,7 +75,12 @@ function objects(){
   * Cette liste sera contenu dans la clé types
   */
 function types(){
-    return undefined;
+    var u = Object.keys(data.types).map(function(key) {
+        return [Number(key), data.types[key]];
+      });
+    return {
+        'types' : u
+    };
 }
 
 /**

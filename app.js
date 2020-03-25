@@ -159,7 +159,16 @@ function get_objects_by_operator(operator){
  * ayant pour mode de communication celui passé en paramètre.
  */
 function get_types_by_comm(comm){
-    return comm;
+    let objects = data.types;
+    let u =[];
+    for (let i in objects){
+        if(objects[i].communication === comm){
+            u.push(objects[i]); 
+        }
+    }
+    if (u.length === 0) return undefined;
+    console.log(u);
+    return {"types":u};
 }
 
 /**
@@ -170,7 +179,19 @@ function get_types_by_comm(comm){
  * ayant pour un format de données celui passé en paramètre.
  */
 function get_types_by_format(format){
-    return format;
+    let objects = data.types;
+    let u =[];
+
+    for (let i in objects){ 
+        for (let j in objects[i].sensors){
+            if(objects[i].sensors[j] === format){
+                u.push(objects[i]);
+            }
+        }
+    }
+    if (u.length === 0) return undefined;
+    console.log(u);
+    return {"types":u};
 }
 
 /**
@@ -181,7 +202,23 @@ function get_types_by_format(format){
  * ayant pour mode de communication celui passé en paramètre.
  */
 function filter_objects_by_comm(comm){
-    return comm;
+    let types = data.types;
+    let objects = data.objects;
+    let result = [];
+       
+    for (let key1 in types){          
+
+       if (types[key1].communication == comm){      
+           for ( let key2 in objects){              
+               if (objects[key2].type === key1){    
+                   result.push(types[key2]);        
+               }
+           }
+       }
+    }
+    if (result.length === 0) return undefined;
+    console.log(result);
+    return {"objects":result};
 }
 
 /**

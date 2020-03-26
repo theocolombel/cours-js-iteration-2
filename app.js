@@ -230,7 +230,41 @@ function filter_objects_by_comm(comm){
  * du même type que celui passé en paramètre.
  */
 function filter_objects_by_data_type(data_type){
-    return data_type;
+    const objects = data.objects;
+    const types = data.types;
+    const formats = data.data_formats;
+
+    let result = []; 
+
+    for (var key1 in formats){
+        
+        if (formats[key1].data_type === data_type){
+            for (var key2 in types){
+                
+                for (var key3 in types[key2].sensors){
+                    if (types[key2].sensors[key3] === key1){
+                        
+                        for (var key4 in objects){
+                            if (objects[key4].type === key2){
+                                var exists = false;
+                                for (var e in result){
+                                    if (result[e] == objects[key4]) exists = true;
+                                }
+                                if (!exists){
+                                    objects[key4]['sensors'] = types[key2].sensors;
+                                    result.push(objects[key4]);
+                                }                               
+                            }
+                        }
+                    }
+                }
+            } 
+        }
+    }
+
+    if (result.length === 0) return undefined;
+    console.log(result);
+    return {"objects":result};
 }
 
 /**

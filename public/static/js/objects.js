@@ -56,17 +56,27 @@
             console.log('Chargement des données de la page');
             $.get('/objects',(data) => {
 
-                for(let object of data.objects) {
-                    console.log(object);
-                    document.querySelector('#table_body').innerHTML = document.querySelector('#table_body').innerHTML + add_line_to_table(object);
+                for(let u of data.objects) {
+                  
+                    console.log(u);
+                    document.querySelector('#table_body').innerHTML = document.querySelector('#table_body').innerHTML + add_line_to_table(u);
+                    // document.querySelector('#table_body').innerHTML+=add_line_to_table(u);
+                    // $('#table_body').append(add_line_to_table(u));
+                    // document.getelementsById('table_body').innerHTML+=add_line_to_table(u);
                 };
              });
-        
         }
 
 function add_line_to_table(data){
     u = data;
     console.log(u);
+    let image;
+    if (data.image == undefined){
+        // console.log(data.type);
+        load_default_image(data.type, data.serial);
+        // console.log(load_default_image(data.type));
+    }
+    else image = data.image;
     line = `   
                 <tr>
                     <td>   
@@ -78,8 +88,8 @@ function add_line_to_table(data){
                     <td>
                         <p>${u.description}</p>
                     </td>
-                    <td>
-                        <input type="checkbox" ${u.status ? "checked" : ''} />
+                    
+                    <td><input type="checkbox" ${u.status ? 'checked' : ''} />
                     </td>
                     <td>
                         <button class="btn btn-primary">Details</button>
@@ -87,4 +97,25 @@ function add_line_to_table(data){
                 </tr>
     `;
     return line ;
+}
+
+
+function load_default_image(type, serial){
+    
+    $.get('http://localhost:5000/data', function(data){
+      
+    let image;
+        for (let u in data.types){
+            if (u == type){
+                
+                image = data.types[u].default_image;
+                
+                $('td:contains('+serial+')').next().children().attr('src', '/static/images/'+image);
+                console.log('Data Serial :' + serial);
+                console.log('Data image :' + image);
+                
+                return image;
+            }
+        }   
+    });
 }

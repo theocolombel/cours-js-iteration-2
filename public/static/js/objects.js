@@ -72,9 +72,9 @@ function add_line_to_table(data){
     console.log(u);
     let image;
     if (data.image == undefined){
-        // console.log(data.type);
+       
         load_default_image(data.type, data.serial);
-        // console.log(load_default_image(data.type));
+       
     }
     else image = data.image;
     line = `   

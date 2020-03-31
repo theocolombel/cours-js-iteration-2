@@ -130,7 +130,7 @@ function get_object_by_serial(serial){
     Object.entries(data.objects).forEach(i => {
         if (i[1].serial == serial){
            u = i[1]  
-           break;
+        
         }
        
     })

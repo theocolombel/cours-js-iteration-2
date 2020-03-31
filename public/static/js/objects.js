@@ -110,7 +110,7 @@ function load_default_image(type, serial){
                 
                 image = data.types[u].default_image;
 
-                document.getElementById("table_body").getElementsByTagName("img").item(8).setAttribute("src", "/static/images/"+image)
+                document.getElementById("table_body").getElementsByTagName("img")[parseInt (serial.substring(4))-1].setAttribute("src", "/static/images/"+image)
                 // $('td:contains('+serial+')').next().children().attr('src', '/static/images/'+image);
                 console.log('Data Serial :' + serial);
                 console.log('Data image :' + image);

@@ -278,24 +278,55 @@ function filter_objects_by_data_type(data_type){
  * l'objet ayant le serial passé en paramètre comprenant toutes les informations possible sur cet objet.
  * Les types de données des sensors et autres informations seront regroupé dans la clé sensors de l'objet.
  */
-function get_full_object_by_serial(serial){
-    o = get_object_by_serial(serial);
-    if(o==undefined) return o ;
-    o.sensors = get_object_info(serial,'sensors'); // not necessary for some reason (been called before)
-    Object.entries(data.data_formats).forEach(format =>{
-        o.sensors.forEach((sensor,i) => {
-            if(format[0]==sensor) {
-                o.sensors[sensor] = format[1] ; 
-                o.sensors.splice(i,1);              
+function get_full_object_by_serial(serial) {
+
+    let objets = data.objects;
+    let types = data.types;
+    let dataFormats = data.data_formats;
+    let res = [];
+    let obj = {};
+    let objetsFinal = {};
+
+    if (!isEmpty(get_object_by_serial(serial))) {
+
+        //Serial :
+        obj = get_object_by_serial(serial);
+
+        //Communication :
+        Object.assign(obj, comms());
+        Object.assign({}, obj);
+
+        // Image par défaut :
+        for (let e in types) {
+
+            if (e == obj.type) {
+
+                Object.assign(obj, { default_image: types[e].default_image });
             }
-        });
-    })
-    o.sensors = Object.assign({}, o.sensors);
-    o.type_description = get_object_info(serial,'description');
-    o.default_image = get_object_info(serial,'default_image');
-    o.communication = get_object_info(serial,'communication');
-    console.log(o)
-    return o;
+        }
+
+        // Liste détaillée des sensors :
+        // dataFormats
+        // Parcours des sensors de l'objet :
+        for(let e in obj.sensors) {
+
+            // Parcours de la liste des sensors :
+            for (let el in dataFormats) {
+                let nomSensor = obj.sensors[e];
+                objetsFinal[nomSensor] = dataFormats[el];
+                if(el == obj.sensors[e]) Object.assign(obj.sensors, objetsFinal);
+                obj.sensors = Object.assign({}, obj.sensors);
+            }
+        }
+
+    }
+
+    console.log('\n');
+    console.log("Merci à tous !");
+    console.log(obj);
+    if (isEmpty(obj)) return undefined;
+
+    return obj;
 }
 
 /**

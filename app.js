@@ -74,14 +74,16 @@ function objects(){
   * des types existant et leur détail dans la base de données.
   * Cette liste sera contenu dans la clé types
   */
+
 function types(){
-    var u = Object.keys(data.types).map(function(key) {
-        return [Number(key), data.types[key]];
+    let result = Object.keys(data.types).map(function(key) {
+        return [(key), data.types[key]];
       });
     return {
-        'types' : u
+        'types' : result
     };
 }
+
 
 /**
  * Cette fonction est exécutée lorsqu'on demande l'adresse
@@ -128,6 +130,7 @@ function get_object_by_serial(serial){
     Object.entries(data.objects).forEach(i => {
         if (i[1].serial == serial){
            u = i[1]  
+           break;
         }
        
     })
